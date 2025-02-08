@@ -138,7 +138,7 @@
             border: 1px solid rgb(188, 185, 185);
             border-radius: 6px;
             padding: 6px;
-            margin-bottom: 10px;
+            /* margin-bottom: 14px; */
             width: 100%;
             font-size: 16px;
         }
@@ -160,6 +160,14 @@
 
         .signup-form label {
             margin-bottom: 4px;
+        }
+
+        .error {
+            color: red;
+            font-size: 16px;
+            height: 6px;
+            display: block;
+            margin-bottom: 12px;
         }
 
         .signup-form button {
@@ -982,17 +990,22 @@
                 <h2>Sign Up</h2>
                 <form action="register.php" method="POST" class="signup-form">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="youremail@gmail.com">
+                    <!-- <div class="error" id="emailerror"></div> -->
+                    <span class="error" id="emailerror"></span>
 
                     <div class="user_info">
                         <div>
                             <label for="username">Username</label>
                             <input type="text" id="username" name="username" required>
+                            <span class="error" id="nameerror"></span>
+                            <!-- <span id="nameerror"></span> -->
                         </div>
 
                         <div>
                             <label for="password">Password</label>
                             <input type="password" id="password" name="password" required>
+                            <span class="error" id="passworderror"></span>
                         </div>
                     </div>
                     <div class="user_info">
