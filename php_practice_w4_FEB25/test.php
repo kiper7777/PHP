@@ -230,5 +230,40 @@ print_r($split_string);
 echo "</pre>";
 print "<br>";
 
+////
+function hello($name)
+{
+echo " $name welcome to SAE";
+}
+hello('Maria');
+print "<br>";
+
+/////
+function fact($number)
+{
+$fact=1;
+for($i=1;$i<=$number;$i++)
+{
+$fact=$fact*$i;
+}
+
+echo"The result fact is $fact";
+}
+
+$number=5;
+fact($number);
+
+print "<br>";
+//////
+
+function mul($num)
+{
+$mul=$num*2;
+echo $mul;
+}
+
+$num=9;
+mul($num);
+
 
 ?>
