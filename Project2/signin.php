@@ -1,3 +1,30 @@
+<?php
+  if(isset($_GET['submit']))
+  {
+    if((!empty($_GET['email']))&&(!empty($_GET['password'])))
+    {
+        session_start();
+
+        $_SESSION['email']=$_GET["email"];
+        // $_SESSION['password']=$_GET['password'];
+        $pass=$_GET['password'];
+
+        echo $_SESSION['email'];
+        // echo $_SESSION['password'];
+
+        header("location:landing.php");
+
+    } else {
+        echo ("please enter email/password");
+    }
+
+
+    // $name=$_GET['email'];
+    // $pass=$_GET['password'];
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,7 +153,7 @@
         <section class="signin">
             <div>
                 <h2>Sign in</h2>
-                <form action="register.php" method="POST" class="signin-form">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" class="signin-form">
                     <div>
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="">
@@ -141,12 +168,13 @@
                         <span class="error" id="passwordError"></span>
                     </div>
 
-                    <button type="submit" id="submit" onclick="validation()">Sign in</button>
+                    <!-- <button type="submit" id="submit" onclick="validation()">Sign in</button> -->
+                    <button type="submit" id="submit" name="submit">Sign in</button>
                 </form>
 
-                <script src="formvalidation_signin.js">
+                <!-- <script src="formvalidation_signin.js">
 
-                </script>
+                </script> -->
             </div>
         </section>
     </main>
