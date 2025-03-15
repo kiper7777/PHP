@@ -1,3 +1,29 @@
+<?php
+include_once "database_connection.php";
+
+if(isset($_GET['submit']))
+{
+   $fname=$_GET['fname'];
+   $lname=$_GET['lname'];
+   $postcode=$_GET['postcode'];
+   $email=$_GET['email'];
+   $password=$_GET['password'];
+   $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+   $sql="INSERT INTO pet_sitters(fname,lname,postcode,email,password) VALUES('$fname','$lname','$postcode','$email','$hashed_password')";
+
+   $res= mysqli_query($conn, $sql);
+   if($res)
+   {
+    echo 'Insert the data successfully';
+   }
+else{
+     echo 'Error. Data not inserted' .mysqli_error($conn);
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +61,7 @@
         <section class="signup">
             <div>
                 <h2>Sign Up</h2>
-                <form action="register.php" method="POST" class="signup-form">
+                <form action="signup.php" method="get" class="signup-form">
 
                     <div class="user_info">
                         <div>
@@ -76,7 +102,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" id="submit" onclick="validation()">Complete Sign Up</button>
+                    <button type="submit" id="submit" name="submit" onclick="validation()">Complete Sign Up</button>
                     <span class="link">Already have an account? <a href="signin.php">Sign in</a></span>
                 </form>
 

@@ -1,4 +1,5 @@
 <?php
+
   if(isset($_GET['submit']))
   {
     if((!empty($_GET['email']))&&(!empty($_GET['password'])))
