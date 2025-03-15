@@ -1,3 +1,27 @@
+<?php
+if(isset($_GET['submit']))
+{
+    if((!empty($_GET['email']))&&(!empty($_GET['password'])))
+    {
+        session_start();
+
+        $_SESSION['email']=$_GET['email'];
+        // $_SESSION['password']=$_GET['password'];
+        $pass=$_GET['password'];
+
+        echo $_SESSION['email'];
+        // echo $_SESSION['password'];
+
+        header("location:landing2.php");
+    } else {
+        echo ("Please enter email/password");
+    }
+    // $name=$_GET['email'];
+    // $pass=$_GET['password'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -996,10 +1020,10 @@
         <section class="login">
             <div>
                 <h2>Log in</h2>
-                <form action="login.php" method="POST" class="login-form">
+                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" class="login-form">
                     <div>
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="youremail@gmail.com">
+                        <input type="email" id="email" name="email" placeholder="youremail@gmail.com" required>
                         <span class="message" id="emailMessage">Enter your email</span>
                         <span class="error" id="emailError"></span>
                     </div>
@@ -1011,10 +1035,10 @@
                         <span class="error" id="passwordError"></span>
                     </div>
 
-                    <button type="submit" id="submit" onclick="validation()">Log in</button>
+                    <button type="submit" id="submit" name="submit" >Log in</button>
                 </form>
 
-                <script src="formvalidation_login.js">
+                <script src="">
 
                 </script>
             </div>
@@ -1114,3 +1138,33 @@
 </body>
 
 </html>
+
+
+<!-- <main>
+        <section class="login">
+            <div>
+                <h2>Log in</h2>
+                <form action="login.php" method="POST" class="login-form">
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="youremail@gmail.com" required>
+                        <span class="message" id="emailMessage">Enter your email</span>
+                        <span class="error" id="emailError"></span>
+                    </div>
+
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <span class="message" id="passwordMessage">Enter your password</span>
+                        <span class="error" id="passwordError"></span>
+                    </div>
+
+                    <button type="submit" id="submit" onclick="validation()">Log in</button>
+                </form>
+
+                <script src="formvalidation_login.js">
+
+                </script>
+            </div>
+        </section>
+    </main> -->

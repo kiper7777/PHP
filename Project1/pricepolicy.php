@@ -23,7 +23,7 @@
                 <div class="card-header">
                     <h3>£25k account</h3>
                     <div class="card-header-footer">
-                        <img src="/image/coins.png" alt="">
+                        <img src="image/coins.png" alt="">
                         <p>Funded Account</p>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="card-header">
                     <h3>£50k account</h3>
                     <div class="card-header-footer">
-                        <img src="/image/coins.png" alt="">
+                        <img src="image/coins.png" alt="">
                         <p>Funded Account</p>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="card-header">
                     <h3>£100k account</h3>
                     <div class="card-header-footer">
-                        <img src="/image/coins.png" alt="">
+                        <img src="image/coins.png" alt="">
                         <p>Funded Account</p>
                     </div>
                 </div>

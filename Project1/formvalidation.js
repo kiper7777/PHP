@@ -149,4 +149,3 @@ function validatePassword(password) {
     return passwordPattern.test(password);
 }
 
-

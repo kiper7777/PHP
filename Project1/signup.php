@@ -1,3 +1,32 @@
+<?php
+include_once "database_connection.php";
+
+if(isset($_POST['submit']))
+{
+    // $email=$_POST['email'];
+    // $username=$_POST['username'];
+    // $fname=$_POST['fname'];
+    // $lname=$_POST['lname'];
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    $sql="INSERT INTO traders_direct(email,username,password,fname,lname) 
+    values('$email','$username','$password','$fname','$lname')";
+
+    $res=mysqli_query($conn,$sql);
+    if($res)
+    {
+       echo 'insert the data successfully';
+    }else{
+       echo 'not inserted';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -443,7 +472,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" id="submit" onclick="validation()">Complete Sign Up</button>
+                    <button type="submit" id="submit" name="submit" onclick="validation()">Complete Sign Up</button>
                 </form>
 
                 <script src="formvalidation_signup.js">
@@ -452,7 +481,7 @@
         </section>
     </main>
 
-    <?php include "footer.php" ; 
+    <?php include "footer.php"; 
     ?>
 
     <script src="script.js">

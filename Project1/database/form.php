@@ -13,8 +13,7 @@ if(isset($_GET['submit']))
    $res= mysqli_query($conn, $sql);
    if($res)
    {
-    echo
-     'insert the data successfully';
+    echo 'insert the data successfully';
    }
 else
 {
