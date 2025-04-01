@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //get data
+        //         fetch("http://localhost/php/CRUD/readdata.php")
+        //         .then(function(res)
+        //     {
+        //       if(res.ok)
+        //       {
+        //         return res.json()
+        //       }
+        //     })
+        //     .then(function(data)
+        // {
+        //     console.log(data)
+        // })
+
+        fetch("http://localhost/php/php_w9_TUE_18MAR25_PHP_/fetch_single_data.php",
+            {
+                method: "post",
+                body: JSON.stringify(
+                    {
+                        id: 1
+                    }),
+                Headers: {
+                    'contyent-type': 'application/JSON'
+                }
+            }
+        )
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log("error"))
+            .finally(() => console.log("fetch or fail data "))
+    </script>
+</body>
+
+</html>
