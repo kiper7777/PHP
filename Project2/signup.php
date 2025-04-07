@@ -1,25 +1,36 @@
 <?php
+echo "'signup.php' file uploaded successfully!<br>";
+var_dump($_POST);
+?>
+
+<?php
+// var_dump($_POST);
+
 include_once "database_connection.php";
 
-if(isset($_GET['submit']))
+if(isset($_POST['submit']))
 {
-   $fname=$_GET['fname'];
-   $lname=$_GET['lname'];
-   $postcode=$_GET['postcode'];
-   $email=$_GET['email'];
-   $password=$_GET['password'];
+    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+    $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = $_POST['password'];
    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-   $sql="INSERT INTO pet_sitters(fname,lname,postcode,email,password) VALUES('$fname','$lname','$postcode','$email','$hashed_password')";
+   echo '<script src="formvalidation_signup.js">
+   </script>';
+//    include_once "formvalidation_signup.php";
+ 
+ 
+   $sql="INSERT INTO pet_sitters(fname,lname,postcode,email,`password`) VALUES('$fname','$lname','$postcode','$email','$hashed_password')";
 
    $res= mysqli_query($conn, $sql);
    if($res)
    {
     echo 'Insert the data successfully';
+   }else{
+    die('Error: ' . mysqli_error($conn));
    }
-else{
-     echo 'Error. Data not inserted' .mysqli_error($conn);
-    }
 }
 
 ?>
@@ -37,31 +48,13 @@ else{
 </head>
 
 <body>
-    <?php include "header.php" ; 
-    ?> 
-
-    <!-- <header>
-        <div class="container">
-            <h1><a href="/index.html">PetCare</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="#contact">Search Sitters</a></li>
-                    <li><a href="#about">Become a Sitter</a></li>
-                    <li><a href="#services">Our Services</a></li>
-                </ul>
-            </nav>
-            <div class="auth_buttons">
-                <button class="signup" id="signupButton">Sign Up</button>
-                <button type="button" class="signin" id="signinButton">Sign In</button>
-            </div>
-        </div>
-    </header> -->
+    <?php include "header.php"?> 
 
     <main>
         <section class="signup">
             <div>
                 <h2>Sign Up</h2>
-                <form action="signup.php" method="get" class="signup-form">
+                <form id="signup-form" action="signup.php" method="post" class="signup-form">
 
                     <div class="user_info">
                         <div>
@@ -102,25 +95,16 @@ else{
                         </div>
                     </div>
 
-                    <button type="submit" id="submit" name="submit" onclick="validation()">Complete Sign Up</button>
+                    <button type="submit" id="submit" name="submit" >Complete Sign Up</button>
                     <span class="link">Already have an account? <a href="signin.php">Sign in</a></span>
                 </form>
 
-                <script src="formvalidation_signup.js">
-
-                </script>
+                <!-- <script src="formvalidation_signup.js"></script> -->
             </div>
         </section>
     </main>
 
-    <!-- <footer>
-        <div class="container">
-            <p>&copy; 2023 PetCare. All rights reserved.</p>
-        </div>
-    </footer> -->
-
-    <?php include "footer.php" ; 
-    ?>
+    <?php include "footer.php"?>
 
     <script src="script.js">
     </script>

@@ -133,22 +133,6 @@
 <body>
     <?php include "header.php" ; 
     ?> 
-    <!-- <header>
-        <div class="container">
-            <h1><a href="/index.php">PetCare</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="#contact">Search Sitters</a></li>
-                    <li><a href="#about">Become a Sitter</a></li>
-                    <li><a href="#services">Our Services</a></li>
-                </ul>
-            </nav>
-            <div class="auth_buttons">
-                <button class="signup" id="signupButton"><a href="/signup.html">Sign Up</a></button>
-                <button class="login" id="loginButton">Sign In</button> -->
-            <!-- </div>
-        </div>
-    </header> -->
 
     <main>
         <section class="signin">
@@ -173,18 +157,10 @@
                     <button type="submit" id="submit" name="submit">Sign in</button>
                 </form>
 
-                <!-- <script src="formvalidation_signin.js">
-
-                </script> -->
+                <script src="formvalidation_signin.js"></script>
             </div>
         </section>
     </main>
-
-    <!-- <footer>
-        <div class="container">
-            <p>&copy; 2023 PetCare. All rights reserved.</p>
-        </div>
-    </footer> -->
 
     <?php include "footer.php" ; 
     ?>

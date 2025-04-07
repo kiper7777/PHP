@@ -69,12 +69,66 @@ header nav ul li a {
     color: white;
 }
 .her{
-    background: url('/image/dog1.jpg');
-    background-size: 1700px 900px;
+    background: url('image/dog1.jpg');
+    /* background-size: 1700px 900px; */
+
+    background-size: cover; /* изображение будет покрывать весь экран */
+    background-attachment: fixed; /* картинка не будет прокручиваться при скроллинге */
+    background-repeat: no-repeat;
+    margin: 0; /* убирает отступы по умолчанию */
+
     height: 700px;
     display: flex;
+    color: white;
 }
 
+.her_become{
+    background: url('image/dog3.jpg');
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    margin: 0; 
+    height: 900px;
+    color: white;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.her_become_content{
+    text-align: center; 
+    max-width: 80%; 
+    gap: 20px;
+}
+
+.her_become h1{
+    font-size: 36px;
+}
+
+.her_become p{
+    font-size: 20px;
+}
+
+.her_become button{
+    border-radius: 20px;
+    border: none;
+    background-color:#0073e6;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.her_become_content button a{
+    color: white;
+    text-decoration: none;
+}
+
+.her_become button:hover{
+    background-color:#3981c8;
+   
+}
 /* #hero {
     background: url('/image/dog1.jpg');
     background-size: 1700px 900px;
@@ -319,7 +373,7 @@ footer {
  /* ******** search block ********* */
 
  .search-box {
-    background: white;
+    background: #e0d6d5b5;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -435,4 +489,33 @@ h3 {
     cursor: pointer;
     font-size: 18px;
     font-weight: 600;
+}
+
+ /* ******** search sitters ********* */
+.search_sitters{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.search_block{
+    padding: 10px;
+    border: 1px solid rgb(223, 220, 220);
+    border-radius: 10px;
+    height: 100%;
+}
+
+/* .search_service{} */
+
+.search_block2, .search_block3{
+    width: 1200px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.search_block2 img, .search_block3 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

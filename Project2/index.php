@@ -9,23 +9,7 @@
 </head>
 
 <body>
-    <!-- <header>
-        <div class="container">
-            <h1><a href="index.php">PetCare</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="#contact">Search Sitters</a></li>
-                    <li><a href="#about">Become a Sitter</a></li>
-                    <li><a href="#services">Our Services</a></li>
-                </ul>
-            </nav>
-            <div class="auth_buttons">
-                <button type="button" class="signup" id="signupButton"><a href="signup.php">Sign Up</a></button>
-                <button type="button" class="signin" id="signinButton"><a href="signin.php">Sign In</a></button>
-            </div>
-        </div>
-    </header> -->
-
+  
     <?php include "header.php" ; 
     ?>
 
@@ -83,7 +67,7 @@
                 </div>
             </div>
 
-            <h3>My Dog’s Size</h3>
+            <h3>My Dog's Size</h3>
             <div class="size-options">
                 <button class="size-btn active">Small<br>0 – 7 kg</button>
                 <button class="size-btn">Medium<br>7 – 18 kg</button>
@@ -93,59 +77,13 @@
             </div>
 
         </div>
-
-
     </section>
 
-    <section id="services">
-        <div class="container">
-            <h2>Our services</h2>
-            <div class="services-grid">
-                <div class="service">
-                    <h3>Dog walking</h3>
-                    <p>Find trusted dog walkers for your pet.</p>
-                </div>
-                <div class="service">
-                    <h3>Cat sitting</h3>
-                    <p>Trust your cat to experienced sitters.</p>
-                </div>
-                <div class="service">
-                    <h3>Animal care</h3>
-                    <p>A full range of services for the care of your pet.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <?php include "services.php"?>
+    <?php include "aboutus.php"?>
+    <?php include "contactus.php"?>
 
-    <section id="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>PetCare - is a platform that helps pet owners find reliable people to walk, care for and babysit their
-                pets.</p>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>Contacts</h2>
-            <p>Please contact us if you have any questions or suggestions.</p>
-            <form id="contact-form">
-                <input type="text" id="name" placeholder="Your name">
-                <input type="email" id="email" placeholder="Your email">
-                <textarea id="message" placeholder="Your message"></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- <footer>
-        <div class="container">
-            <p>&copy; 2023 PetCare. All rights reserved.</p>
-        </div>
-    </footer> -->
-
-    <?php include "footer.php" ; 
-    ?>
+    <?php include "footer.php"?>
 
     <script src="script.js"></script>
 </body>

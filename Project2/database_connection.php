@@ -12,5 +12,4 @@ if(!$conn)
     echo "Successfully connected to database!";
 }
 
-
 ?>
