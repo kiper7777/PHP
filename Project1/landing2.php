@@ -22,6 +22,7 @@ if(isset($_GET['logout']))
             background-color: pink;
             padding: 4px;
             cursor: pointer;
+            background-color: red; 
         }
 
     </style>
@@ -29,11 +30,9 @@ if(isset($_GET['logout']))
 <body>
 
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
-        
         <div>
             <input type="submit" name="logout" value="Logout" id="logout" class="logout">
         </div>
-
     </form>
     
 </body>

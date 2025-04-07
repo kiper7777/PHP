@@ -1,6 +1,6 @@
 <?php if (isset($_SESSION['user_id'])): ?>
     <form action="logout.php" method="POST" style="display: inline;">
-        <button type="submit" style="background: none; border: none; color: blue; cursor: pointer;">Выйти</button>
+        <button type="submit" style="background: none; border: none; color: blue; cursor: pointer;">Log out</button>
     </form>
 <?php endif; ?>
 
@@ -47,6 +47,15 @@ if (isset($_POST['delete'])) {
 }
 ?>
 
+<!-- Logout -->
+<?php
+if(isset($_GET['logout']))
+{
+    session_destroy();
+    header("location:login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,14 +65,36 @@ if (isset($_POST['delete'])) {
         body { font-family: Arial, sans-serif; margin: 40px; }
         .container { max-width: 600px; margin: auto; }
         form { display: grid; gap: 10px; }
-        input { padding: 10px; }
-        button { padding: 10px; font-weight: bold; }
+        input { border-radius:6px; padding: 10px; }
+        button { border-radius:6px; padding: 10px; font-weight: bold; }
         .success { color: green; }
+
+        .delete { background-color:red; }
+        .update { background-color:orange; }
+        .logout{
+            border-radius:6px;
+            border: 2px solid gray;
+            background-color: gray;
+            color: white;
+            font-size: 14px;
+            padding: 10px;
+            cursor: pointer;
+            margin-top:10px;
+        }
+        .head{display:flex; justify-content:space-between; align-items:center;}
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Welcome, <?= htmlspecialchars($user['username']) ?>!</h2>
+        <div class="head">
+            <h2>Welcome, <?= htmlspecialchars($user['username']) ?>!</h2>
+
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
+                <div>
+                    <input type="submit" name="logout" value="Logout" id="logout" class="logout">
+                </div>
+            </form>
+        </div>
 
         <?php if (isset($_GET['success'])): ?>
             <p class="success">✅ Data updated successfully.</p>
@@ -82,9 +113,11 @@ if (isset($_POST['delete'])) {
             <label>Last Name:</label>
             <input type="text" name="lname" value="<?= htmlspecialchars($user['lname']) ?>" required>
 
-            <button type="submit" name="update">💾 Update</button>
-            <button type="submit" name="delete" onclick="return confirm('Вы уверены, что хотите удалить аккаунт?')">🗑️ Удалить аккаунт</button>
+            <button class="update" type="submit" name="update">💾 Update</button>
+            <button class="delete" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete your account?')">🗑️ Delete account</button>
         </form>
+
+        
     </div>
 </body>
 </html>

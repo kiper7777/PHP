@@ -25,7 +25,7 @@ if (isset($_POST['update_profile'])) {
     }
 
     mysqli_query($conn, $sql);
-    echo "Профиль обновлен.";
+    echo "Profile updated.";
 }
 
 // Получаем текущие данные
@@ -37,7 +37,7 @@ $user = mysqli_fetch_assoc($result);
     <input type="text" name="fname" value="<?= $user['fname'] ?>" required>
     <input type="text" name="lname" value="<?= $user['lname'] ?>" required>
     <input type="file" name="profile_photo">
-    <button type="submit" name="update_profile">Сохранить</button>
+    <button type="submit" name="update_profile">Save</button>
 </form>
 
 <?php if (!empty($user['photo'])): ?>
