@@ -1,7 +1,9 @@
 <?php
-$sql="INSERT INTO contentcreation_student
-(name,lname,age)
+include_once "database_connection.php";
+
+$sql="INSERT INTO contentcreation_student(name,lname,age)
 VALUES('$name','$lname',$age)";
+
 $insert_data=mysqli_query($conn,$sql);
 if($insert_data)
 {

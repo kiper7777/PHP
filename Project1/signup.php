@@ -1,31 +1,43 @@
 <?php
+echo "'signup.php' file uploaded successfully!<br>";
+var_dump($_POST);
+?>
+
+<?php
+// var_dump($_POST);
 include_once "database_connection.php";
 
 if(isset($_POST['submit']))
 {
-    // $email=$_POST['email'];
-    // $username=$_POST['username'];
-    // $fname=$_POST['fname'];
-    // $lname=$_POST['lname'];
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $email=$_POST['email'];
+    $username=$_POST['username'];
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $password=$_POST['password'];
+    // $email = mysqli_real_escape_string($conn, $_POST['email']);
+    // $username = mysqli_real_escape_string($conn, $_POST['username']);
+    // $password = $_POST['password'];
+    // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+    // $lname = mysqli_real_escape_string($conn, $_POST['lname']);
 
-    $sql="INSERT INTO traders_direct(email,username,password,fname,lname) 
-    values('$email','$username','$password','$fname','$lname')";
+    echo '<script src="formvalidation_signup.js">
+    </script>';
+ //    include_once "formvalidation_signup.php";
+   
+    $sql="INSERT INTO traders_beginners(email,username,`password`,fname,lname) VALUES('$email','$username','$password','$fname','$lname')";
 
-    $res=mysqli_query($conn,$sql);
-    if($res)
-    {
-       echo 'insert the data successfully';
-    }else{
-       echo 'not inserted';
-    }
+    $res= mysqli_query($conn, $sql);
+   if($res)
+   {
+    echo 'Insert the data successfully';
+   }else{
+    die('Error: ' . mysqli_error($conn));
+   }
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -354,46 +366,17 @@ if(isset($_POST['submit']))
         
         
     </style>
-
 </head>
 
 <body>
     <?php include "header.php" ; 
     ?>
     
-    <!-- <header>
-        <div class="container">
-            <div class="logo-nav">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="image/logo.png" alt="Profitrade Logo">
-                    </a>
-                </div>
-                <div class="burger" id="burger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <nav class="menu" id="menu">
-                    <ul>
-                        <li><a href="#">Price Policy</a></li>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Join our Discord</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="auth-buttons">
-                <button class="login" id="loginButton">Log in</button>
-                <button class="signup" id="signupButton">Sign up</button>
-            </div>
-        </div>
-    </header> -->
-
     <main>
         <section class="signup">
             <div>
                 <h2>Sign Up</h2>
-                <form action="signup.php" method="POST" class="signup-form">
+                <form id="signup-form" action="signup.php" method="POST" class="signup-form">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="youremail@gmail.com">
                     <span class="message" id="emailMessage">For account activation and important updates</span>
@@ -430,7 +413,7 @@ if(isset($_POST['submit']))
                         </div>
                     </div>
 
-                    <label for="address">Address</label>
+                    <!-- <label for="address">Address</label>
                     <input type="text" id="address" name="address" required>
 
                     <label for="address">Address 2 (Optional)</label>
@@ -470,13 +453,19 @@ if(isset($_POST['submit']))
                             <label for="zip">Zip</label>
                             <input type="text" id="zip" name="zip" required>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <button type="submit" id="submit" name="submit" onclick="validation()">Complete Sign Up</button>
+                    <!-- <button type="submit" id="submit" name="submit" onclick="validation()">Complete Sign Up</button> -->
+
+                    <button type="submit" id="submit" name="submit" >Complete Sign Up</button>
+                    <span class="link">Already have an account? <a href="login.php">Log in</a></span>
                 </form>
 
-                <script src="formvalidation_signup.js">
-                </script>
+                <!-- <script src="formvalidation_signup.js">
+                </script> -->
+                <?php
+                // echo "<script src='formvalidation_signup.js'></script>"
+                ?>
             </div>
         </section>
     </main>
@@ -485,6 +474,25 @@ if(isset($_POST['submit']))
     ?>
 
     <script src="script.js">
+    // document.getElementById('signupForm').addEventListener('submit', function(e) {
+    // e.preventDefault(); 
+
+    // const formData = new FormData(this);
+
+    // fetch('signup.php', {
+    //     method: 'POST',
+    //     body: formData
+    // })
+    // .then(response => response.text())
+    // .then(data => {
+    //     console.log('Server response:', data);
+    //     alert('Registration was successful!');
+    // })
+    // .catch(error => {
+    //     console.error('Error:', error);
+    //     alert('Error sending data');
+    // });
+    // });
     </script>
 </body>
 

@@ -1,6 +1,6 @@
 <?php
 include_once "database_connection.php";
-$sql="CREATE TABLE traders_direct(
+$sql="CREATE TABLE traders_beginners(
     id INT(12) NOT NULL AUTO_INCREMENT,
     email VARCHAR(30) NOT NULL,
     username VARCHAR(30) NOT NULL,
@@ -15,7 +15,9 @@ $sql="CREATE TABLE traders_direct(
     {
         echo "table created successfully";
     } 
-    else 
-    echo "table not created successfully".mysqli_error($conn);
+    else {
+        echo "table not created successfully".mysqli_error($conn);
+    }
+    
 
 ?>

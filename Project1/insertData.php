@@ -1,5 +1,5 @@
 <?php
-$sql="INSERT INTO traders_direct
+$sql="INSERT INTO traders_beginners
 (email,username,password,fname,lname)
 VALUES('$email','$username','$password','$fname','$lname')";
 $insert_data=mysqli_query($conn,$sql);
