@@ -12,7 +12,7 @@ if(isset($_GET['submit']))
         echo $_SESSION['email'];
         // echo $_SESSION['password'];
 
-        header("location:landing2.php");
+        header("location:dashboard.php");
     } else {
         echo ("Please enter email/password");
     }
@@ -40,7 +40,7 @@ if (isset($_POST['login'])) {
         // Проверка пароля
         if ($password === $user['password']) { 
             $_SESSION['user_id'] = $user['id']; // сохранить ID в сессии
-            header("Location: user_dashboard.php");
+            header("Location: dashboard.php");
             exit();
         } else {
             $error = "❌ Incorrect password.";
@@ -117,7 +117,7 @@ if (isset($_POST['login'])) {
 
         .menu {
             display: flex;
-            /* desctop */
+            /* desktop */
         }
 
         .menu ul {
@@ -133,6 +133,8 @@ if (isset($_POST['login'])) {
         }
 
         .auth-buttons button {
+            display: flex;
+            flex-direction: column;
             padding: 0.5rem 1rem;
             gap: 1.5rem;
             font-size: 16px;
@@ -221,14 +223,6 @@ if (isset($_POST['login'])) {
             margin-top: 6px;
             display: none;
         }
-
-        /* .error {
-            color: red;
-            font-size: 16px;
-            height: 6px;
-            display: block;
-            margin-bottom: 12px;
-        } */
 
         .login-form .message {
             color: gray;

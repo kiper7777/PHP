@@ -23,7 +23,7 @@ $result = mysqli_query($conn, $query);
 $user = mysqli_fetch_assoc($result);
 
 // Обработка обновления данных
-if (isset($_POST['update'])) {
+if (isset($_POST['edit'])) {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $fname = $_POST['fname'];
@@ -63,25 +63,65 @@ if(isset($_GET['logout']))
     <title>Personal account</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; }
-        .container { max-width: 600px; margin: auto; }
-        form { display: grid; gap: 10px; }
-        input { border-radius:6px; padding: 10px; }
-        button { border-radius:6px; padding: 10px; font-weight: bold; }
-        .success { color: green; }
+        .container { 
+            max-width: 600px; 
+            margin: auto; 
+            background-color:rgb(225, 221, 206);
+            padding: 20px;
+            border-radius:20px;
+            border: 1px solid rgb(188, 185, 185);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form { 
+            display: grid; 
+            gap: 10px; 
+        }
+        form label{
+            font-size: 16px;
+            font-weight: 600;
+            color: #5a5858;
+            margin-top: 10px;
+        }
+        input { 
+            border-radius:6px; 
+            padding: 10px; 
+            border: 1px solid rgb(188, 185, 185);
+        }
+        button { 
+            border-radius:6px; 
+            padding: 10px; 
+            font-weight: bold; 
+            border: none;
+        }
 
-        .delete { background-color:red; }
-        .update { background-color:orange; }
+        .success { 
+            color: green; 
+        }
+
+        .btn_delete { 
+            background-color: rgb(251, 91, 91); 
+        }
+        .btn_edit { 
+            background-color: rgb(244, 188, 85); 
+            margin-top: 20px;
+        }
+
         .logout{
-            border-radius:6px;
-            border: 2px solid gray;
+            border-radius: 6px;
+            /* border: 2px solid gray; */
             background-color: gray;
             color: white;
             font-size: 14px;
+            font-weight: bold;
             padding: 10px;
             cursor: pointer;
             margin-top:10px;
         }
-        .head{display:flex; justify-content:space-between; align-items:center;}
+        .head {
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center;
+        }
     </style>
 </head>
 <body>
@@ -113,10 +153,9 @@ if(isset($_GET['logout']))
             <label>Last Name:</label>
             <input type="text" name="lname" value="<?= htmlspecialchars($user['lname']) ?>" required>
 
-            <button class="update" type="submit" name="update">💾 Update</button>
-            <button class="delete" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete your account?')">🗑️ Delete account</button>
+            <button class="btn_edit" type="submit" name="edit">💾 Edit profile</button>
+            <button class="btn_delete" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete your account?')">🗑️ Delete account</button>
         </form>
-
         
     </div>
 </body>

@@ -1,5 +1,5 @@
 <?php
-echo "'signup.php' file uploaded successfully!<br>";
+// echo "'signup.php' file uploaded successfully!<br>";
 var_dump($_POST);
 ?>
 
@@ -149,17 +149,17 @@ if(isset($_POST['submit']))
             flex: 1;
             display: flex;
             flex-direction: column;
-            max-width: 400px;
+            /* max-width: 400px; */
         }
 
-        .user_info .country {
+        /* .user_info .country {
             border: 1px solid rgb(188, 185, 185);
             border-radius: 6px;
             padding: 8px;
             width: 100%;
             font-size: 16px;
             box-sizing: border-box;
-        }
+        } */
 
         .signup-form button {
             background-color: #3A2A06;
@@ -181,190 +181,32 @@ if(isset($_POST['submit']))
         }
 
          
-        @media (max-width: 481px) {
-            body {
-                color: rgb(48, 113, 18);
-            }
+        
 
-            .burger {
-                display: flex
-            }
-
-            .menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: #333;
-                padding: 10px 0;
-                text-align: center;
-            }
-
-            .menu .active {
-                display: flex;
-            }
-
-            .menu ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .menu a {
-                font-size: 18px;
-            }
-
-            .burger.active span:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-
-            .burger.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .burger.active span:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            header {
-                text-align: center;
-            }
-
-            .container {
-                margin: 0;
-                padding: 0.4rem 0.8rem;
-                justify-content: space-around;
-            }
-
-            .logo img {
-                width: 60px;
-                height: auto;
-                display: flex;
-                justify-items: start;
-            }
-
-            nav ul {
-                align-items: center;
-            }
-
-            .auth-buttons button {
-                padding: 0.2rem 0.4rem;
-                font-size: 12px;
-                font-weight: 600;
+        @media screen and (max-width: 992px){
+            .signup-form {
+                width: 500px;
             }
         }
 
-        @media (min-width: 481px) and (max-width: 768px) {
-            body {
-                color: rgb(17, 65, 38);
-            }
-
-            .burger {
-                display: flex
-            }
-
-            /* .burger span {
-                display: block;
-                width: 25px;
-                height: 3px;
-                background-color: #fff;
-                transition: all 0.3s ease;
-            } */
-
-            .menu {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: #333;
-                padding: 10px 0;
-                text-align: center;
-            }
-
-            .menu .active {
-                display: flex;
-            }
-
-            .menu ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .menu a {
-                font-size: 18px;
-            }
-
-            .burger.active span:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-
-            .burger.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .burger.active span:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            header {
-                text-align: center;
-            }
-
-            .container {
-                margin: 0;
-                padding: 1rem;
-            }
-
-            .logo img {
-                width: 70px;
-                height: auto;
-            }
-
-            nav ul {
-                align-items: center;
-            }
-
-            .auth-buttons button {
-                padding: 0.5rem 1rem;
-                gap: 1rem;
-                font-size: 16px;
-                font-weight: 600;
-            }
-       }
-
-        @media (min-width: 769px) and (max-width: 1024px) {
-            body {
-                color: rgb(105, 91, 91);
-            }
-
-            .container {
-                margin: 0;
-                padding: 1rem;
-            }
-
-            .logo img {
-                width: 90px;
-                height: auto;
-            }
-
-            nav ul {
-                display: flex;
-                gap: 1rem;
-            }
-
-            .auth-buttons {
-                display: flex;
-                gap: 8px;
+        @media screen and (max-width: 768px){
+            .signup-form {
+                width: 500px;
             }
         }
 
-              
+        @media screen and (max-width: 575px){
+            .signup-form {
+                width: 400px;
+            }
+        }
 
-        
-        
+        @media screen and (max-width: 375px){
+            .signup-form {
+                width: 260px;
+            }
+        }
+       
     </style>
 </head>
 
