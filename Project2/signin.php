@@ -13,17 +13,46 @@
         echo $_SESSION['email'];
         // echo $_SESSION['password'];
 
-        header("location:landing.php");
+        header("location:user_dashboard.php");
 
     } else {
         echo ("please enter email/password");
     }
 
-
     // $name=$_GET['email'];
     // $pass=$_GET['password'];
   }
 
+?>
+
+<?php
+session_start();
+include_once "database_connection.php";
+
+// Если форма отправлена
+if (isset($_POST['signin'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Поиск пользователя по email
+    $query = "SELECT * FROM pet_sitters WHERE email = '$email'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+
+        // Проверка пароля
+        if ($password === $user['password']) { 
+            $_SESSION['user_id'] = $user['id']; // сохранить ID в сессии
+            header("Location: user_dashboard.php");
+            exit();
+        } else {
+            $error = "❌ Incorrect password.";
+        }
+    } else {
+        $error = "❌ User not found.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +61,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Sign In</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .signin {
@@ -138,10 +167,16 @@
         <section class="signin">
             <div>
                 <h2>Sign in</h2>
-                <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" class="signin-form">
+
+                <?php if (!empty($error)): ?>
+                    <p class="error"><?= $error ?></p>
+                <?php endif; ?>
+
+                <!-- <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get" class="signin-form"> -->
+                <form action="" method="POST" class="signin-form">    
                     <div>
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="">
+                        <input type="email" id="email" name="email" placeholder="" required>
                         <span class="message" id="emailMessage">Enter your email</span>
                         <span class="error" id="emailError"></span>
                     </div>
@@ -154,10 +189,10 @@
                     </div>
 
                     <!-- <button type="submit" id="submit" onclick="validation()">Sign in</button> -->
-                    <button type="submit" id="submit" name="submit">Sign in</button>
+                    <button type="submit" id="submit" name="signin">Sign in</button>
                 </form>
 
-                <script src="formvalidation_signin.js"></script>
+                <!-- <script src="formvalidation_signin.js"></script> -->
             </div>
         </section>
     </main>

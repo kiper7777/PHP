@@ -1,5 +1,5 @@
 <?php
-echo "'signup.php' file uploaded successfully!<br>";
+// echo "'signup.php' file uploaded successfully!<br>";
 var_dump($_POST);
 ?>
 
@@ -10,19 +10,25 @@ include_once "database_connection.php";
 
 if(isset($_POST['submit']))
 {
-    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
-    $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = $_POST['password'];
-   $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $postcode=$_POST['postcode'];
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+
+//     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+//     $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+//     $postcode = mysqli_real_escape_string($conn, $_POST['postcode']);
+//     $email = mysqli_real_escape_string($conn, $_POST['email']);
+//     $password = $_POST['password'];
+//    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
    echo '<script src="formvalidation_signup.js">
    </script>';
 //    include_once "formvalidation_signup.php";
  
  
-   $sql="INSERT INTO pet_sitters(fname,lname,postcode,email,`password`) VALUES('$fname','$lname','$postcode','$email','$hashed_password')";
+   $sql="INSERT INTO pet_sitters(fname,lname,postcode,email,`password`) VALUES('$fname','$lname','$postcode','$email','$password')";
 
    $res= mysqli_query($conn, $sql);
    if($res)
