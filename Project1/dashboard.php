@@ -15,10 +15,10 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$userId = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 
 // Получение данных пользователя
-$query = "SELECT * FROM traders_beginners WHERE id = $userId";
+$query = "SELECT * FROM traders_beginners WHERE id = $user_id";
 $result = mysqli_query($conn, $query);
 $user = mysqli_fetch_assoc($result);
 
@@ -69,6 +69,10 @@ $user = mysqli_fetch_assoc($result);
             align-items: center;
             font-size: 16px;
             margin-bottom: 10px;
+        }
+
+        .user-info img{
+            border-radius: 50%;
         }
 
         .nav {
@@ -145,7 +149,16 @@ $user = mysqli_fetch_assoc($result);
             margin-bottom: 10px;
         }
 
+        .box ul{
+            margin: 0 auto;
+        }
+
+        .box li {
+            list-style: none;
+        }
+
         .box a {
+            list-style: none;
             color: #407cb0;
             font-size: 14px;
         }
@@ -189,11 +202,11 @@ $user = mysqli_fetch_assoc($result);
 
     <div class="container">
         <div class="user-info">
+            <img src="//www.gravatar.com/avatar/eb3004e547e5b5623e01dec076c23da0?s=24&amp;d=mm">
             <span> <?= htmlspecialchars($user['username']) ?></span> 
 
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
                 <a href="?logout=1">Logout</a>
-
             </form>
         </div>
 
@@ -206,7 +219,7 @@ $user = mysqli_fetch_assoc($result);
             <button><a href="profile.php">Profile</a></button>
         </div>
 
-        <div class="">
+        <div>
             <h2>Welcome, <?= htmlspecialchars($user['fname']) ?>!</h2>
         </div>
 
@@ -225,7 +238,10 @@ $user = mysqli_fetch_assoc($result);
                 <h3>Useful Links</h3>
                 <div class="box white">
                     <ul style="padding-left: 18px;">
-                        <li><a href="#">Logout</a></li>
+                        <li>
+                            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get"><a href="?logout=1">Logout</a>
+                            </form>
+                        </li>
                         <li><a href="profile.php">Change Password/Edit Profile</a></li>
                         <li><a href="#">Payments History</a></li>
                         <li><a href="#">Update Credit Card Info</a></li>

@@ -2,47 +2,82 @@
 session_start();
 include "database_connection.php";
 
+// <!-- Logout -->
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
+
+// Проверка аутентификации
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
 $user_id = $_SESSION['user_id'];
 
-// if (isset($_POST['update_profile'])) {
-//     $fname = $_POST['fname'];
-//     $lname = $_POST['lname'];
-
-//     if (!empty($_FILES['profile_photo']['name'])) {
-//         $photo_name = $_FILES['profile_photo']['name'];
-//         $photo_tmp = $_FILES['profile_photo']['tmp_name'];
-//         $target_dir = "uploads/";
-//         move_uploaded_file($photo_tmp, $target_dir . $photo_name);
-
-//         $sql = "UPDATE traders_beginners SET fname='$fname', lname='$lname', photo='$photo_name' WHERE id=$user_id";
-//     } else {
-//         $sql = "UPDATE traders_beginners SET fname='$fname', lname='$lname' WHERE id=$user_id";
-//     }
-
-//     mysqli_query($conn, $sql);
-//     echo "Profile updated.";
-// }
-
-// Получаем текущие данные
-$result = mysqli_query($conn, "SELECT * FROM traders_beginners WHERE id=$user_id");
+// Получение данных пользователя
+$query = "SELECT * FROM traders_beginners WHERE id = $user_id";
+$result = mysqli_query($conn, $query);
 $user = mysqli_fetch_assoc($result);
+
+// Обработка удаления аккаунта
+if (isset($_POST['delete'])) {
+    $deleteQuery = "DELETE FROM traders_beginners WHERE id=$user_id";
+    mysqli_query($conn, $deleteQuery);
+
+    session_destroy();
+    header("Location: signup.php?deleted=1");
+    exit();
+}
+
+?>
+
+<!-- // Обработка обновления данных и загрузки файла -->
+<?php
+if (isset($_POST['edit'])) {
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $photo_name = $user['photo'];
+
+    // Обработка фото
+    if (!empty($_FILES['profile_photo']['name'])) {
+        $photo_name = time() . "_" . basename($_FILES['profile_photo']['name']);
+        $photo_tmp = $_FILES['profile_photo']['tmp_name'];
+        $target_dir = "uploads/";
+        $target_file = $target_dir . $photo_name;
+
+
+        echo "<pre>";
+        var_dump($_FILES['profile_photo']);
+        echo "</pre>";
+        
+        if (move_uploaded_file($photo_tmp, $target_file)) {
+
+            // Обновление с фото
+            $updateQuery = "UPDATE traders_beginners SET email='$email', username='$username', fname='$fname', lname='$lname', photo='$photo_name' WHERE id=$user_id";
+        } else {
+            $updateQuery = "UPDATE traders_beginners SET email='$email', username='$username', fname='$fname', lname='$lname' WHERE id=$user_id";
+        }
+    } else {
+        // Обновление без фото
+        $updateQuery = "UPDATE traders_beginners SET email='$email', username='$username', fname='$fname', lname='$lname' WHERE id=$user_id";
+    }
+
+    mysqli_query($conn, $updateQuery);
+
+    header("Location: profile.php?success=1");
+    exit();
+}
+
 ?>
 
 
-
-        <!-- ///photo -->
-
-<!-- <form method="POST" enctype="multipart/form-data">
-    <input type="text" name="fname" value="<?= $user['fname'] ?>" required>
-    <input type="text" name="lname" value="<?= $user['lname'] ?>" required>
-    <input type="file" name="profile_photo">
-    <button type="submit" name="update_profile">Save</button>
-</form> -->
-
-<?php if (!empty($user['photo'])): ?>
-    <img src="uploads/<?= $user['photo'] ?>" alt="Profile Photo" style="width:150px;">
-<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,9 +118,21 @@ $user = mysqli_fetch_assoc($result);
         }
 
         .user-info {
-            align-items: center;
+            display: flex;
+            gap: 6px;
+            align-items: baseline;
             font-size: 16px;
             margin-bottom: 10px;
+        }
+
+        .user-info img{
+            border-radius: 50%;
+            display: flex;
+            margin-top: 2px;
+        }
+
+        .user-info form a{
+            display: flex;
         }
 
         .nav {
@@ -258,7 +305,12 @@ $user = mysqli_fetch_assoc($result);
 
     <div class="container">
         <div class="user-info">
-            <span>pulka27</span> <a href="#">Logout</a>
+            <img src="//www.gravatar.com/avatar/eb3004e547e5b5623e01dec076c23da0?s=24&amp;d=mm">
+            <span> <?= htmlspecialchars($user['username']) ?></span> 
+
+            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
+                <a href="?logout=1">Logout</a>
+            </form>
         </div>
 
         <div class="nav">
@@ -271,17 +323,25 @@ $user = mysqli_fetch_assoc($result);
         </div>
 
         <h2>Profile</h2>
-
+       
         <div class="section">
             <div class="box">
+
+            <?php if (isset($_GET['success'])): ?>
+                <p class="success">✅ Data updated successfully.</p>
+            <?php endif; ?>
                 
                 <div class="box white">
-                <form method="POST" action="">
-                    <label>Email:</label>
-                    <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+                    <form method="POST" action="" enctype="multipart/form-data">
 
-                    <label>Username:</label>
-                    <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" required>
+                    <?php if (!empty($user['photo'])): ?>
+                        <img src="uploads/<?= htmlspecialchars($user['photo']) ?>" alt="Profile Photo" style="width:150px;">
+                    <?php else: ?>
+                        <p style="color:red;">No profile photo uploaded.</p>
+                    <?php endif; ?>
+                    
+                    <label>Upload Profile Photo:</label>
+                    <input type="file" name="profile_photo">
 
                     <label>First Name:</label>
                     <input type="text" name="fname" value="<?= htmlspecialchars($user['fname']) ?>" required>
@@ -289,6 +349,16 @@ $user = mysqli_fetch_assoc($result);
                     <label>Last Name:</label>
                     <input type="text" name="lname" value="<?= htmlspecialchars($user['lname']) ?>" required>
 
+                    <label>Email:</label>
+                    <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+
+                    <label>Username:</label>
+                    <input type="text" name="username" value="<?= htmlspecialchars($user['username']) ?>" required>
+
+                    <label>Password:</label>
+                    <input type="text" name="password" value="<?= htmlspecialchars($user['password']) ?>" required>
+
+    
                     <button class="btn_edit" type="submit" name="edit">💾 Edit profile</button>
                     <button class="btn_delete" type="submit" name="delete" onclick="return confirm('Are you sure you want to delete your account?')">🗑️ Delete account</button>
                 </form>
@@ -304,5 +374,5 @@ $user = mysqli_fetch_assoc($result);
     </div>
 
 </body>
-
 </html>
+

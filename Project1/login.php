@@ -1058,31 +1058,3 @@ if (isset($_POST['login'])) {
 </html>
 
 
-<!-- <main>
-        <section class="login">
-            <div>
-                <h2>Log in</h2>
-                <form action="login.php" method="POST" class="login-form">
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="youremail@gmail.com" required>
-                        <span class="message" id="emailMessage">Enter your email</span>
-                        <span class="error" id="emailError"></span>
-                    </div>
-
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                        <span class="message" id="passwordMessage">Enter your password</span>
-                        <span class="error" id="passwordError"></span>
-                    </div>
-
-                    <button type="submit" id="submit" onclick="validation()">Log in</button>
-                </form>
-
-                <script src="formvalidation_login.js">
-
-                </script>
-            </div>
-        </section>
-    </main> -->

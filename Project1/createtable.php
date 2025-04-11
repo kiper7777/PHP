@@ -18,6 +18,6 @@ $sql="CREATE TABLE traders_beginners(
     else {
         echo "table not created successfully".mysqli_error($conn);
     }
-    
+
 
 ?>

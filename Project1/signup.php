@@ -1,6 +1,6 @@
 <?php
 // echo "'signup.php' file uploaded successfully!<br>";
-var_dump($_POST);
+// var_dump($_POST);
 ?>
 
 <?php
@@ -14,12 +14,6 @@ if(isset($_POST['submit']))
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
     $password=$_POST['password'];
-    // $email = mysqli_real_escape_string($conn, $_POST['email']);
-    // $username = mysqli_real_escape_string($conn, $_POST['username']);
-    // $password = $_POST['password'];
-    // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    // $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-    // $lname = mysqli_real_escape_string($conn, $_POST['lname']);
 
     echo '<script src="formvalidation_signup.js">
     </script>';
@@ -48,23 +42,6 @@ if(isset($_POST['submit']))
     <title>Sign Up</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-         /* .auth-buttons .login {
-            background-color: #3A2A06;
-            font-size: 16px;
-            font-weight: bold;
-            color: #CD9441;
-            border-radius: 8px;
-            padding: 10px;
-            width: auto;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .auth-buttons .login:hover {
-            background-color: #777355;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        } */
            
         .signup {
             display: flex;
@@ -316,25 +293,6 @@ if(isset($_POST['submit']))
     ?>
 
     <script src="script.js">
-    // document.getElementById('signupForm').addEventListener('submit', function(e) {
-    // e.preventDefault(); 
-
-    // const formData = new FormData(this);
-
-    // fetch('signup.php', {
-    //     method: 'POST',
-    //     body: formData
-    // })
-    // .then(response => response.text())
-    // .then(data => {
-    //     console.log('Server response:', data);
-    //     alert('Registration was successful!');
-    // })
-    // .catch(error => {
-    //     console.error('Error:', error);
-    //     alert('Error sending data');
-    // });
-    // });
     </script>
 </body>
 
